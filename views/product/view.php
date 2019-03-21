@@ -43,7 +43,6 @@ $this->params['breadcrumbs'][] = $this->title;
             ],
             'width',
             'height',
-            'enable',
             [
                 'attribute' => 'created_at',
                 'value' => !is_null($model->created_at) ? date('d/m/Y h:i:s', $model->created_at) : NULL
@@ -52,6 +51,10 @@ $this->params['breadcrumbs'][] = $this->title;
                 'attribute' => 'updated_at',
                 'value' => !is_null($model->updated_at) ? date('d/m/Y h:i:s', $model->updated_at) : NULL
             ],
+            [
+                'attribute' => 'enable',
+                'value' => $model->enable == 1 ? 'Ativado' : 'Desativado'
+            ]
         ],
     ]) ?>
 

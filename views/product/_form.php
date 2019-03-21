@@ -25,8 +25,6 @@ use app\models\Category;
         </div>
     </div>
 
-    
-
     <?= $form->field($model, 'description')->textarea(['rows' => 6]) ?>
 
     <?= $form->field($model, 'sku')->textInput(['maxlength' => true]) ?>
@@ -42,9 +40,11 @@ use app\models\Category;
         </div>
     </div>
 
-    
-
-   
+    <div class="row">
+        <div class="col-md-12">
+            <?= $form->field($model, 'enable')->dropDownList(['1' => 'Ativado', '0' => 'Destivado']); ?>
+        </div>
+    </div>
 
     <div class="form-group">
         <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>

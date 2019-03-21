@@ -40,6 +40,7 @@ class SearchOrder extends Order
     public function search($params)
     {
         $query = Order::find();
+        $query->joinWith('customer');
 
         // add conditions that should always apply here
 
@@ -61,9 +62,11 @@ class SearchOrder extends Order
             'customer_id' => $this->customer_id,
             'order_status_id' => $this->order_status_id,
             'created_at' => $this->created_at,
-            'updated_at' => $this->updated_at,
-            'deleted_at' => $this->deleted_at,
+            'updated_at' => $this->updated_at
         ]);
+
+        $query->andFilterWhere(['is', 'customer.deleted_at', new \yii\db\Expression('null')]);
+        $query->andFilterWhere(['is', 'order.deleted_at', new \yii\db\Expression('null')]);
 
         return $dataProvider;
     }

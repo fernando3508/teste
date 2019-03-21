@@ -62,6 +62,12 @@ class Customer extends \yii\db\ActiveRecord
         ];
     }
 
+    public function delete()
+    {
+        $this->deleted_at = strtotime('NOW');
+        $this->save();
+    }
+
     /**
      * @return \yii\db\ActiveQuery
      */

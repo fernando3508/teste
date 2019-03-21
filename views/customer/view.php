@@ -26,9 +26,9 @@ $this->params['breadcrumbs'][] = $this->title;
         ]) ?>
     </p>
 
-    <?= 
+    <?php
 
-        !is_null($model->enderecos) ? DetailView::widget([
+       echo !is_null($model->enderecos) ? DetailView::widget([
             'model' => $model,
             'attributes' => [
                 'id',
@@ -66,7 +66,12 @@ $this->params['breadcrumbs'][] = $this->title;
                 //'updated_at',
                 //'deleted_at',
             ],
-        ])
+        ]);
+
+        echo $this->render('_items', [
+            'searchModel' => $searchModel,
+            'dataProvider' => $dataProvider
+        ]);
 
 
      ?>

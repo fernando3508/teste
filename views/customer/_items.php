@@ -44,6 +44,15 @@ use app\models\OrderStatus;
                     },
                     'update' => function($url, $model){
                         return Html::a('<span class="glyphicon glyphicon-pencil"></span>', ['/order/update', 'id' => $model->id]);
+                    },
+                    'delete' => function($url, $model){
+                        return Html::a('<span class="glyphicon glyphicon-trash"></span>', ['/order/delete', 'id' => $model->id], [
+                            'class' => '',
+                            'data' => [
+                                'confirm' => 'Você tem certeza absoluta? Você perderá todas as informações sobre esse usuário com essa ação.',
+                                'method' => 'post',
+                            ],
+                        ]);
                     }
                 ],
             ],

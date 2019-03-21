@@ -38,7 +38,12 @@ $this->params['breadcrumbs'][] = $this->title;
             'name',
             //'description:ntext',
             'sku',
-            'price',
+            [
+                'label' => 'Preço',
+                'value' => function($model){
+                    return $model->preco;
+                }
+            ],
             //'width',
             //'height',
             //'enable',

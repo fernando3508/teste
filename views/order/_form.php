@@ -69,7 +69,7 @@ use app\models\OrderStatus;
                         ?>
                         <div class="row">
                             <div class="col-sm-6">
-                                <?= $form->field($modelProduct, "[{$i}]product_id")->dropDownList(ArrayHelper::map(Product::find()->all(), 'id', 'name'), ['prompt' => '']) ?>
+                                <?= $form->field($modelProduct, "[{$i}]product_id")->dropDownList(ArrayHelper::map(Product::find()->where(['IS', 'deleted_at', new \yii\db\Expression('null')])->all(), 'id', 'name'), ['prompt' => '']) ?>
                             </div>
                             <div class="col-sm-6">
                                 <?= $form->field($modelProduct, "[{$i}]quatity")->textInput(['maxlength' => true]) ?>

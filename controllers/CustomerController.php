@@ -9,7 +9,8 @@ use app\models\SearchCustomer;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
-
+use app\models\Order;
+use app\models\SearchOrder;
 /**
  * CustomerController implements the CRUD actions for Customer model.
  */
@@ -53,8 +54,15 @@ class CustomerController extends Controller
      */
     public function actionView($id)
     {
+        $searchModel = new SearchOrder();
+        $searchModel->customer_id = $id;
+        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+        
+
         return $this->render('view', [
             'model' => $this->findModel($id),
+            'searchModel' => $searchModel,
+            'dataProvider' => $dataProvider,
         ]);
     }
 

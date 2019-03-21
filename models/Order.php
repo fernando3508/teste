@@ -71,6 +71,12 @@ class Order extends \yii\db\ActiveRecord
         return false;
     }
 
+    public function delete()
+    {
+        $this->deleted_at = strtotime('NOW');
+        $this->save();
+    }
+
     /**
      * @return \yii\db\ActiveQuery
      */
@@ -93,5 +99,19 @@ class Order extends \yii\db\ActiveRecord
     public function getOrderProducts()
     {
         return $this->hasMany(OrderProducts::className(), ['order_id' => 'id']);
+    }
+
+    public function getTotalOrder()
+    {
+        $total = 0;
+        if(($orderProducts = $this->orderProducts) != NULL)
+        {
+            foreach ($orderProducts as $key => $p) 
+            {
+                $total = $p->total + $total;
+            }
+        }
+
+        return $total != NULL ? number_format($total, 2, ',', '.') : '0,00';
     }
 }

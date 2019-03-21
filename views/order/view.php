@@ -45,6 +45,10 @@ $this->params['breadcrumbs'][] = $this->title;
             [
                 'attribute' => 'updated_at',
                 'value' => !is_null($model->updated_at) ? date('d/m/Y', $model->updated_at) : NULL
+            ],
+            [
+                'label' => 'Total',
+                'value' => 'R$ ' . $model->totalOrder
             ]
         ],
     ]) ?>

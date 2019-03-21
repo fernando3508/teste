@@ -74,6 +74,8 @@ class SearchProduct extends Product
             ->andFilterWhere(['like', 'width', $this->width])
             ->andFilterWhere(['like', 'height', $this->height]);
 
+        $query->andFilterWhere(['IS', 'deleted_at', new \yii\db\Expression('null')]);
+
         return $dataProvider;
     }
 }

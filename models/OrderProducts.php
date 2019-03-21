@@ -56,6 +56,29 @@ class OrderProducts extends \yii\db\ActiveRecord
         ];
     }
 
+    public function beforeSave($insert)
+    {
+        if(parent::beforeSave($insert))
+        {
+            $this->calcTotal();
+            return true;
+        }
+        return false;
+    }
+
+    public function calcTotal()
+    {
+        if(!is_null($this->quatity) && ($this->price = $this->product->price) != NULL)
+        {
+            $this->total = $this->price * $this->quatity;
+        }
+    }
+
+    public function getTotalPreco()
+    {
+        return $this->total != NULL ? number_format($this->total, 2, ',', '.') : '0,00';
+    }
+
     /**
      * @return \yii\db\ActiveQuery
      */

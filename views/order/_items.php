@@ -23,16 +23,20 @@ use yii\helpers\ArrayHelper;
                     return $model->product->name;
                 }
             ],
-            'quatity',
             [
                 'attribute' => 'price',
+                'label' => 'Preço unid.',
                 'value' => function($model){
-                    return $model->product->preco;
+                    return 'R$ ' . $model->product->preco;
                 }
             ],
-            'total',
-
-            ['class' => 'yii\grid\ActionColumn'],
+            'quatity',
+            [
+                'label' => 'Subtotal',
+                'value' => function($model){
+                    return 'R$ ' . $model->totalPreco;
+                }
+            ]
         ],
     ]); ?>
 </div>

@@ -63,8 +63,8 @@ class Product extends \yii\db\ActiveRecord
             'price' => 'Preço',
             'width' => 'Largura',
             'height' => 'Altura',
-            'enable' => 'Enable',
-            'created_at' => 'Criado',
+            'enable' => 'Status',
+            'created_at' => 'Data',
             'updated_at' => 'Atualizado',
             'deleted_at' => 'Deleted At',
         ];
@@ -83,6 +83,12 @@ class Product extends \yii\db\ActiveRecord
             return true;
         }
         return false;
+    }
+
+    public function delete()
+    {
+        $this->deleted_at = strtotime('NOW');
+        $this->save();
     }
 
 

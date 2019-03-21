@@ -61,7 +61,6 @@ class SearchCustomer extends Customer
             'id' => $this->id,
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
-            'deleted_at' => $this->deleted_at,
         ]);
 
         $query->andFilterWhere(['like', 'first_name', $this->first_name])
@@ -69,6 +68,8 @@ class SearchCustomer extends Customer
             ->andFilterWhere(['like', 'cpf', $this->cpf])
             ->andFilterWhere(['like', 'email', $this->email])
             ->andFilterWhere(['like', 'tel', $this->tel]);
+
+        $query->andFilterWhere(['IS', 'deleted_at', new \yii\db\Expression('null')]);
 
         return $dataProvider;
     }
